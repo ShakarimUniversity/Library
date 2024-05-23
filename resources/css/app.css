@@ -1,0 +1,198 @@
+/*@import '/vendor/awcodes/filament-tiptap-editor/resources/css/plugin.css';*/
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: "PTSerif-Regular";
+        src: url("../../public/fonts/PTSerif-Regular.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: "PTSerif-Bold";
+        src: url("../../public/fonts/PTSerif-Bold.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: "Montserrat-Regular";
+        src: url("../../public/fonts/Montserrat-Regular.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: "Montserrat-Light";
+        src: url("../../public/fonts/Montserrat-Light.ttf") format("truetype");
+    }
+}
+:root {
+    --swiper-navigation-color: #fdbb74 !important;
+    --swiper-theme-color: #fdbb74 !important;
+}
+.swiper-container {
+    width: 100%;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    height: auto !important;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.text-center{
+    text-align: center;
+}
+img{
+    display: inline-block;
+    border: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.filament-tiptap-grid,
+.filament-tiptap-grid-builder {
+    display: grid;
+    gap: 1rem;
+    box-sizing: border-box;
+
+.filament-tiptap-grid__column,
+.filament-tiptap-grid-builder__column {
+    box-sizing: border-box;
+    border-style: dashed;
+    border-width: 1px;
+    border-color: theme("colors.gray.400");
+    padding: 0.5rem;
+    border-radius: theme("borderRadius.DEFAULT");
+
+> * + * {
+    margin-block-start: 1rem;
+}
+}
+
+&.ProseMirror-selectednode {
+     border-radius: theme("borderRadius.DEFAULT");
+     outline-offset: 2px;
+     outline: theme("colors.gray.900") dashed 2px;
+ }
+}
+
+.filament-tiptap-grid[type^="asymetric"] {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+}
+
+@media (max-width: theme('screens.sm')) {
+    .filament-tiptap-grid-builder[data-stack-at="sm"] {
+        grid-template-columns: 1fr !important;
+
+    .filament-tiptap-grid-builder__column {
+        grid-column: span 1 !important;
+    }
+}
+}
+
+@media (max-width: theme('screens.md')) {
+    .filament-tiptap-grid-builder[data-stack-at="md"] {
+        grid-template-columns: 1fr !important;
+
+    .filament-tiptap-grid-builder__column {
+        grid-column: span 1 !important;
+    }
+}
+}
+
+@media (max-width: theme('screens.lg')) {
+    .filament-tiptap-grid-builder[data-stack-at="lg"] {
+        grid-template-columns: 1fr !important;
+
+    .filament-tiptap-grid-builder__column {
+        grid-column: span 1 !important;
+    }
+}
+}
+
+.filament-tiptap-grid[type="asymetric-right-thirds"] {
+@screen md {
+    grid-template-columns: 1fr 2fr;
+}
+}
+
+.filament-tiptap-grid[type="asymetric-left-thirds"] {
+@screen md {
+    grid-template-columns: 2fr 1fr;
+}
+}
+
+.filament-tiptap-grid[type="asymetric-right-fourths"] {
+@screen md {
+    grid-template-columns: 1fr 3fr;
+}
+}
+
+.filament-tiptap-grid[type="asymetric-left-fourths"] {
+@screen md {
+    grid-template-columns: 3fr 1fr;
+}
+}
+
+.filament-tiptap-grid[type="responsive"] {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+
+&[cols="2"] {
+@screen md {
+    grid-template-columns: repeat(2, 1fr);
+}
+}
+
+&[cols="3"] {
+@screen md {
+    grid-template-columns: repeat(3, 1fr);
+}
+}
+
+&[cols="4"] {
+@screen md {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@screen lg {
+    grid-template-columns: repeat(4, 1fr);
+}
+}
+
+&[cols="5"] {
+@screen md {
+    grid-template-columns: repeat(5, 1fr);
+}
+}
+}
+
+.filament-tiptap-grid[type="fixed"] {
+&[cols="2"] {
+     grid-template-columns: repeat(2, 1fr);
+ }
+
+&[cols="3"] {
+     grid-template-columns: repeat(3, 1fr);
+ }
+
+&[cols="4"] {
+     grid-template-columns: repeat(4, 1fr);
+ }
+
+&[cols="5"] {
+     grid-template-columns: repeat(5, 1fr);
+ }
+}
