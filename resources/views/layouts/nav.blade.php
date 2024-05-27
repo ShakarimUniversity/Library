@@ -13,7 +13,7 @@
             @if(count($item->children)>0)
                     <div class="relative">
                         <button  @click="openMenu === {{ $item->id }} ? openMenu = null : openMenu = {{ $item->id }}" type="button" class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900" aria-expanded="false">
-                            {{ $item->title_kz }}
+                            {{ $item->{'title_'.app()->getLocale()} }}
                             <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
                             </svg>
@@ -39,7 +39,8 @@
             @endforeach
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+            @include('partials/language_switcher')
+{{--            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>--}}
         </div>
     </nav>
 </div>

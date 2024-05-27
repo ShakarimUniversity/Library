@@ -12,7 +12,7 @@
                     :aria-expanded="expanded"
                     aria-controls="faqs-text-{{$item->id}}"
                 >
-                    <span>{{ $item->title_kz }}</span>
+                    <span>{{ $item->{'title_'.app()->getLocale()} }}</span>
                     <svg class="fill-white shrink-0 ml-8" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
                         <rect y="7" width="16" height="2" rx="1" class="transform origin-center transition duration-200 ease-out" :class="{'!rotate-180': expanded}" />
                         <rect y="7" width="16" height="2" rx="1" class="transform origin-center rotate-90 transition duration-200 ease-out" :class="{'!rotate-180': expanded}" />
@@ -29,7 +29,7 @@
                         <ul class="mt-2">
                             @foreach($item->children as $child)
                                 <li class="text-gray-200 font-semibold ml-2 py-2">
-                                    <a href="{{ $child->page ? route('page',$child->page) : '#' }}">{{ $child->title_kz }}</a>
+                                    <a href="{{ $child->page ? route('page',$child->page) : '#' }}">{{ $child->{'title_'.app()->getLocale()} }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -39,7 +39,7 @@
             </li>
             @else
                 <li class="text-white font-semibold py-2">
-                    <a href="{{ $item->page ? route('page',$item->page) : '#' }}">{{ $item->title_kz }}</a>
+                    <a href="{{ $item->page ? route('page',$item->page) : '#' }}">{{ $item->{'title_'.app()->getLocale()} }}</a>
                 </li>
             @endif
         @endforeach

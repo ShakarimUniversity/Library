@@ -12,7 +12,7 @@
                 </li>
                 <li class="inline-flex items-center">
                     <a href="{{ route('announcements') }}" class="text-gray-600 hover:text-blue-500">
-                        Хабарландырулар
+                        {{ __('interface.announcements') }}
                     </a>
                     <span class="mx-4 h-auto text-gray-400 font-medium">/</span>
                 </li>

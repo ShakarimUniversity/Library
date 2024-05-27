@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,13 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', \App\Http\Controllers\SiteController::class);
-Route::get('/pages/{page:slug}',\App\Http\Controllers\PageController::class)->name('page');
-Route::controller(\App\Http\Controllers\NewsController::class)->group(function () {
-    Route::get('/news', 'index')->name('news');
-    Route::get('/news/{post:slug}', 'show')->name('news.show');
+Route::post('language', function (Request $request) {
+    \Illuminate\Support\Facades\App::setLocale($request->locale);
+    session()->put('locale', $request->locale);
+//    \cookie('locale',$request->locale,60);
+   // return redirect('/');
+      return redirect()->back();
+})->name('language');
+
+Route::group([ 'middleware' => 'setlocale'],function (){
+    Route::get('/', \App\Http\Controllers\SiteController::class);
+    Route::get('/pages/{page:slug}',\App\Http\Controllers\PageController::class)->name('page');
+    Route::controller(\App\Http\Controllers\NewsController::class)->group(function () {
+        Route::get('/news', 'index')->name('news');
+        Route::get('/news/{post:slug}', 'show')->name('news.show');
+    });
+    Route::controller(\App\Http\Controllers\AnnouncementController::class)->group( function (){
+        Route::get('/announcements', 'index')->name('announcements');
+        Route::get('/announcement/{announcement:slug}', 'show')->name('announcement.show');
+    });
 });
-Route::controller(\App\Http\Controllers\AnnouncementController::class)->group( function (){
-    Route::get('/announcements', 'index')->name('announcements');
-    Route::get('/announcement/{announcement:slug}', 'show')->name('announcement.show');
-});
+

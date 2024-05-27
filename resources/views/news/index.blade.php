@@ -12,7 +12,7 @@
                 </li>
                 <li class="inline-flex items-center">
                     <a href="#" class="text-strong-blue">
-                        Жаңалықтар
+                        {{ __('interface.news') }}
                     </a>
                 </li>
             </ul>
@@ -26,7 +26,7 @@
                 <h1 class="font-semibold text-strong-blue text-lg pb-2">{{ $post->title }}</h1>
                 <p>{!! $post->shortBody() !!}</p>
                 <div>
-                    <a class="inline-block w-full text-right text-gray-600 underline my-4" href="{{ route('news.show',$post) }}">Толығырақ</a>
+                    <a class="inline-block w-full text-right text-gray-600 underline my-4" href="{{ route('news.show',$post) }}">{{ __('interface.more') }}</a>
                 </div>
             </div>
         </div>
