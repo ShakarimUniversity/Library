@@ -23,12 +23,12 @@
         </div>
     </div>
 
-    <p>Подкатегории</p>
-    <ul>
-        @foreach()
-        @endforeach
-        <li></li>
-    </ul>
+{{--    <p>Подкатегории</p>--}}
+{{--    <ul>--}}
+{{--        @foreach()--}}
+{{--        @endforeach--}}
+{{--        <li></li>--}}
+{{--    </ul>--}}
 
     <div class="w-full overflow-hidden rounded-lg shadow-lg border-t my-6">
         @if($files)
