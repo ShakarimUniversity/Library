@@ -69,13 +69,15 @@ return [
         'application/octet-stream',
         'application/x-compress',
         'application/x-compressed',
-        'multipart/x-zip'
+        'multipart/x-zip',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
     ],
     'disk' => 'public',
     'directory' => 'content-files',
     'visibility' => 'public',
     'preserve_file_names' => false,
-    'max_file_size' => 20000,
+    'max_file_size' => 30000,
     'image_resize_mode' => null,
     'image_crop_aspect_ratio' => null,
     'image_resize_target_width' => null,
