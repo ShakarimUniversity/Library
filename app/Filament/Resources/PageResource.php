@@ -69,6 +69,7 @@ class PageResource extends Resource
 //                    ->columnSpanFull(),
                 TiptapEditor::make('content_kz')
                     ->required()
+                    ->maxFileSize('30000')
                     ->columnSpanFull(),
                 TiptapEditor::make('content_ru')
                     ->required()

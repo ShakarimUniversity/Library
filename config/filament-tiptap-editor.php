@@ -75,7 +75,7 @@ return [
     'directory' => 'content-files',
     'visibility' => 'public',
     'preserve_file_names' => false,
-    'max_file_size' => 4042,
+    'max_file_size' => 20000,
     'image_resize_mode' => null,
     'image_crop_aspect_ratio' => null,
     'image_resize_target_width' => null,

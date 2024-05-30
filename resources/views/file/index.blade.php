@@ -1,5 +1,4 @@
-<x-layout :meta-title="$post->meta_title ?: $post->title" :meta-description="$post->meta_description">
-
+<x-layout metaTitle="Файлы" metaDescription="Test description">
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg mb-2 ">
         <div class="flex items-center flex-wrap">
             <ul class="flex items-center">
@@ -11,24 +10,14 @@
                     <span class="mx-4 h-auto text-gray-400 font-medium">/</span>
                 </li>
                 <li class="inline-flex items-center">
-                    <a href="{{ route('news') }}" class="text-gray-600 hover:text-blue-500">
-                        {{ __('interface.news') }}
+                    <a href="#" class="text-strong-blue">
+                        Файлы
                     </a>
-                    <span class="mx-4 h-auto text-gray-400 font-medium">/</span>
-                </li>
-                <li class="inline-flex items-center">
-                        {{ $post->title }}
                 </li>
             </ul>
         </div>
     </div>
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg">
-        <img src="{{ $post->getThumbnail() }}" alt="image">
-        <h1 class="text-xl text-strong-blue font-semibold border-b my-4 pb-2">{{ $post->title }}</h1>
-        <p></p>
-        <div>
-            <p>{!! $post->content !!}</p>
-        </div>
+        <livewire:lib-files />
     </div>
-
 </x-layout>

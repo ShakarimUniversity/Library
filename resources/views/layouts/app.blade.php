@@ -20,8 +20,8 @@
     <div class="max-w-7xl flex items-center space-x-8 py-4 px-4 md:px-0 mx-auto">
         <a class="cursor-pointer" href="/"><img class="w-20 md:w-24" src="/logo.png" alt="logo"></a>
         <div class="flex flex-col">
-            <h1 class="text-xl md:text-2xl uppercase text-strong-blue font-ptserif">Научная библиотека</h1>
-            <p class="text-base md:text-lg font-ptserifreg">НАО 'Университет имени Шакарима города Семей'</p>
+            <h1 class="text-xl md:text-2xl uppercase text-strong-blue font-ptserif">{{ __('interface.library') }}</h1>
+            <p class="text-base md:text-lg font-ptserifreg">{{ __('interface.company_namy') }}</p>
         </div>
     </div>
     @include('layouts.nav',[

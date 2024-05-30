@@ -33,5 +33,6 @@ Route::group([ 'middleware' => 'setlocale'],function (){
         Route::get('/announcements', 'index')->name('announcements');
         Route::get('/announcement/{announcement:slug}', 'show')->name('announcement.show');
     });
+    Route::get('/files',\App\Http\Controllers\FileController::class);
 });
 
