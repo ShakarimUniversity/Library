@@ -34,8 +34,12 @@
                         </div>
                     </div>
                 @else
-                    <a href="{{ $item->page ? route('page',$item->page) : '#' }}" class="text-sm font-semibold leading-6 text-gray-900">{{ $item->{'title_'.app()->getLocale()} }}</a>
-                @endif
+                    @if($item->link)
+                        <a href="{{ $item->link }}" class="text-sm font-semibold leading-6 text-gray-900">{{ $item->{'title_'.app()->getLocale()} }}</a>
+                    @else
+                        <a href="{{ $item->page ? route('page',$item->page) : '#' }}" class="text-sm font-semibold leading-6 text-gray-900">{{ $item->{'title_'.app()->getLocale()} }}</a>
+                    @endif
+               @endif
             @endforeach
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -91,7 +95,11 @@
                         @endforeach
 
                     </div>
-                    <a href="{{ $item->page ? route('page',$item->page) : '#' }}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ $item->{'title_'.app()->getLocale()} }}</a>
+                    @if($item->link)
+                        <a href="{{ $link }}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ $item->{'title_'.app()->getLocale()} }}</a>
+                    @else
+                        <a href="{{ $item->page ? route('page',$item->page) : '#' }}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ $item->{'title_'.app()->getLocale()} }}</a>
+                    @endif
                 </div>
                 <div class="py-6">
                     @include('partials/language_switcher')
