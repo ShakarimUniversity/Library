@@ -24,7 +24,7 @@
                                 @foreach($item->children as $child)
                                     <div class="relative text-sm leading-6 border-b pb-2 hover:bg-gray-50">
                                         <a href="{{ $child->page ? route('page',$child->page) : '#' }}" class="block font-semibold text-gray-900">
-                                            {{ $child->title_kz }}
+                                            {{ $child->{'title_'.app()->getLocale()} }}
                                             <span class="absolute inset-0"></span>
                                         </a>
                                     </div>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 @else
-                    <a href="{{ $item->page ? route('page',$item->page) : '#' }}" class="text-sm font-semibold leading-6 text-gray-900">{{ $item->title_kz }}</a>
+                    <a href="{{ $item->page ? route('page',$item->page) : '#' }}" class="text-sm font-semibold leading-6 text-gray-900">{{ $item->{'title_'.app()->getLocale()} }}</a>
                 @endif
             @endforeach
         </div>
@@ -46,7 +46,7 @@
 </div>
 
 <!-- Mobile menu, show/hide based on menu open state. -->
-<div x-show="isBurgerMenuOpen" class="lg:hidden" role="dialog" aria-modal="true">
+<div x-data="{ openMobileMenu: null }" x-show="isBurgerMenuOpen" class="lg:hidden" role="dialog" aria-modal="true">
     <!-- Background backdrop, show/hide based on slide-over state. -->
     <div class="fixed inset-0 z-10"></div>
     <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -66,36 +66,35 @@
             <div class="-my-6 divide-y divide-gray-500/10">
                 <div class="space-y-2 py-6">
                     <div class="-mx-3">
-                        <button type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" aria-controls="disclosure-1" aria-expanded="false">
-                            Электронная библиотека
-                            <!--
-                              Expand/collapse icon, toggle classes based on menu open state.
+                        @foreach($nav as $item)
+                            @if(count($item->children)>0)
+                                <button @click="openMobileMenu === {{ $item->id }} ? openMobileMenu = null : openMobileMenu = {{ $item->id }}" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" aria-controls="disclosure-1" aria-expanded="false">
+                                    {{ $item->{'title_'.app()->getLocale()} }}
+                                    <!--
+                                      Expand/collapse icon, toggle classes based on menu open state.
 
-                              Open: "rotate-180", Closed: ""
-                            -->
-                            <svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                        <!-- 'Product' sub-menu, show/hide based on menu state. -->
-                        {{--                                <div class="mt-2 space-y-2" id="disclosure-1">--}}
-                        {{--                                    <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Analytics</a>--}}
-                        {{--                                    <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Engagement</a>--}}
-                        {{--                                    <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Security</a>--}}
-                        {{--                                    <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Integrations</a>--}}
-                        {{--                                    <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Automations</a>--}}
-                        {{--                                    <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Watch demo</a>--}}
-                        {{--                                    <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Contact sales</a>--}}
-                        {{--                                </div>--}}
+                                      Open: "rotate-180", Closed: ""
+                                    -->
+                                    <svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <!-- 'Product' sub-menu, show/hide based on menu state. -->
+                                <div x-show="openMobileMenu === {{ $item->id }}" class="mt-2 space-y-2" id="disclosure-1">
+                                    @foreach($item->children as $child)
+                                        <a href="{{ $child->page ? route('page',$child->page) : '#' }}" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                                            {{ $child->{'title_'.app()->getLocale()} }}
+                                        </a>
+                                    @endforeach
+                                </div>
+                            @endif
+                        @endforeach
+
                     </div>
-                    <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Каталог</a>
-                    <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Контакты</a>
-                    <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Прайс-листы</a>
-                    <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Информаций о подписке</a>
-                    <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">О библиотеке</a>
+                    <a href="{{ $item->page ? route('page',$item->page) : '#' }}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ $item->{'title_'.app()->getLocale()} }}</a>
                 </div>
                 <div class="py-6">
-                    <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
+                    @include('partials/language_switcher')
                 </div>
             </div>
         </div>

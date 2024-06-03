@@ -1,4 +1,4 @@
-<x-layout meta-title="Хабарландырулар" meta-description="">
+<x-layout :meta-title="__('interface.library').' | '.__('interface.announcements')" meta-description="">
 
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg mb-2 ">
         <div class="flex items-center flex-wrap">

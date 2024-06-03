@@ -71,7 +71,8 @@ class PostResource extends Resource
 
                 Forms\Components\Card::make()
                     ->schema([
-                        Forms\Components\FileUpload::make('thumbnail'),
+                        Forms\Components\FileUpload::make('thumbnail')
+                            ->acceptedFileTypes(['image/jpeg','image/png','image/jpg']),
                         Forms\Components\Select::make('categories')
                             ->multiple()
                             ->relationship('categories', 'title_kz'),

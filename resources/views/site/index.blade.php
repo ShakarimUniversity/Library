@@ -1,4 +1,4 @@
-<x-layout metaTitle="Кітапхана" metaDescription="Test description">
+<x-layout metaTitle="Кітапхана" metaDescription="Шәкәрім университетінің кітапхана сайты">
     <div class="swiper-container news-swiper h-96 relative rounded-md overflow-hidden drop-shadow-lg">
 
         <!-- swiper slides -->
