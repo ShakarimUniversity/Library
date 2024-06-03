@@ -13,6 +13,15 @@ class LibFile extends Model
     protected $primaryKey = 'file_id';
 
     public function getFile(){
-        return '/storage/lib_files/'.$this->url_download;
+        return '/storage/jdownloads/'.$this->category->cat_dir.$this->url_download;
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(CategoryLibFile::class,'cat_id','cat_id');
+    }
+
+    public function directory(){
+
     }
 }

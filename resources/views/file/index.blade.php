@@ -11,7 +11,7 @@
                 </li>
                 <li class="inline-flex items-center">
                     <a href="#" class="text-strong-blue">
-                        Файлы
+                        {{ __('interface.files') }}
                     </a>
                 </li>
             </ul>

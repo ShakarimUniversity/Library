@@ -36,9 +36,9 @@
             <table id="teachersTable" class="w-full whitespace-no-wrap shadow-lg">
                 <thead>
                 <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                    <th class="px-4 py-3">Имя файла</th>
-                    <th class="px-4 py-3">Размер</th>
-                    <th class="px-4 py-3">Создан</th>
+                    <th class="px-4 py-3">{{ __('interface.filename') }}</th>
+                    <th class="px-4 py-3">{{ __('interface.size') }}</th>
+                    <th class="px-4 py-3">{{ __('interface.created_at') }}</th>
                     <th class="px-4 py-3"></th>
                 </tr>
                 </thead>
@@ -52,7 +52,7 @@
                             <a href="{{ $file->getFile() }}"
                                class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                aria-label="Edit"
-                               title="{{ __('button.edit') }}"
+                               title="Жүктеу"
                             >
                                 <svg
                                     class="w-5 h-5"
