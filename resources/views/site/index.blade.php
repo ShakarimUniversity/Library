@@ -1,6 +1,6 @@
 <x-layout metaTitle="Кітапхана" metaDescription="Шәкәрім университетінің кітапхана сайты">
+    @if(count($news)>0)
     <div class="swiper-container news-swiper h-96 relative rounded-md overflow-hidden drop-shadow-lg">
-
         <!-- swiper slides -->
         <div class="swiper-wrapper">
             @foreach($news as $item)
@@ -22,6 +22,7 @@
             </div>
             @endforeach
         </div>
+
         <!-- !swiper slides -->
 
         <!-- next / prev arrows -->
@@ -33,6 +34,11 @@
         <div class="swiper-pagination"></div>
         <!-- !pagination dots -->
     </div>
+    @else
+        <div class="rounded-md overflow-hidden my-4 bg-white drop-shadow-lg p-4">
+            <p>Жаңалықтар табылмады ...</p>
+        </div>
+    @endif
     <section class="rounded-md overflow-hidden text-gray-400 my-4 bg-white drop-shadow-lg">
         <div class="container mx-auto px-4">
             <div class="flex flex-col">
@@ -46,7 +52,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 sm:-m-4 -mx-4 -mb-10 pb-8">
-                @foreach($announcements as $item)
+                @forelse($announcements as $item)
                 <div class="p-4 sm:mb-0 mb-6">
                     <div class="rounded-lg h-64 overflow-hidden">
                         <img alt="content" class="object-cover object-center h-full w-full" src="{{ $item->getThumbnail() }}">
@@ -59,7 +65,9 @@
                         </svg>
                     </a>
                 </div>
-                @endforeach
+                @empty
+                     <p class="px-4 text-black">Хабарландыру табылмады ...</p>
+                @endforelse
             </div>
         </div>
     </section>

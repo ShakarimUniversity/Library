@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg">
-        @foreach($announcements as $announcement)
+        @forelse($announcements as $announcement)
             <div class="flex space-x-4 border-b mb-4 pb-4">
                 <img src="{{ $announcement->getThumbnail() }}" class="w-60" alt="{{ $announcement->title }}">
                 <div>
@@ -30,7 +30,9 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+            @empty
+                <p>Хабарландырулар табылмады ...</p>
+            @endforelse
     </div>
 
 </x-layout>

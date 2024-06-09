@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg">
-        @foreach($posts as $post)
+        @forelse($posts as $post)
         <div class="flex space-x-4 border-b mb-4 pb-4">
             <img src="{{ $post->getThumbnail() }}" class="w-60" alt="{{ $post->title }}">
             <div>
@@ -30,7 +30,9 @@
                 </div>
             </div>
         </div>
-        @endforeach
+        @empty
+           <p>Жаңалықтар табылмады ...</p>
+        @endforelse
     </div>
 
 </x-layout>
