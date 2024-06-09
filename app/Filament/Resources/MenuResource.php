@@ -19,6 +19,13 @@ class MenuResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Меню';
+
+    protected static ?string $modelLabel = 'Меню';
+
+    protected static ?string $pluralModelLabel = 'Меню';
+
+
     public static function canAccess(): bool
     {
         $user = auth()->user();

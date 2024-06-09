@@ -13,8 +13,8 @@ class SiteController extends Controller
 
        // dd(\App\Models\Menu::with(['category','children','page'])->where(['active'=>true,'category_id'=>1])->where('parent_id','=',NULL)->get());
 
-        $news = Post::with('categories')->limit(4)->get();
-        $announcements = Announcement::limit(4)->get();
+        $news = Post::with('categories')->where('language',app()->getLocale())->limit(4)->get();
+        $announcements = Announcement::where('language',app()->getLocale())->limit(4)->get();
 
         return view('site.index',compact('news','announcements'));
     }

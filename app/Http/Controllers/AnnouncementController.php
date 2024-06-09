@@ -10,7 +10,7 @@ class AnnouncementController extends Controller
 {
     public function index(){
 
-        $announcements = Announcement::paginate(20);
+        $announcements = Announcement::where('language',app()->getLocale())->paginate(20);
 
         return view('announcement.index',compact('announcements'));
     }

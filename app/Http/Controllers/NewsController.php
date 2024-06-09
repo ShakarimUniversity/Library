@@ -10,7 +10,9 @@ class NewsController extends Controller
 {
     public function index(){
 
-        $posts = Post::with('categories')->paginate(20);
+     //   dd(app()->getLocale());
+
+        $posts = Post::with('categories')->where('language',app()->getLocale())->paginate(20);
 
         return view('news.index',compact('posts'));
     }

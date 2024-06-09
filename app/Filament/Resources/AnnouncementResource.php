@@ -43,7 +43,7 @@ class AnnouncementResource extends Resource
                     ->schema([
                         Forms\Components\Select::make('language')
                             ->options([
-                                'kk' => 'Казақша',
+                                'kz' => 'Казақша',
                                 'ru' => 'Русский',
                             ]),
                         Forms\Components\TextInput::make('title')

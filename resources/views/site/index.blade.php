@@ -8,7 +8,9 @@
                 <img class="absolute object-cover w-full h-full" src="/storage/{{ $item->thumbnail }}" alt="news img"/>
                 <div class="absolute z-10 bg-gradient-to-b from-20% from-transparent via-transparent to-strong-blue h-full w-full"></div>
                 <div class="absolute z-20 bottom-5 p-4 text-left w-full">
-                    <div class="text-base 3xl:text-xl 3xl:mb-2 underline text-orange-300">{{ __('interface.news') }}</div>
+                    <div class="text-base 3xl:text-xl 3xl:mb-2 underline text-orange-300">
+                        <a href="{{ route('news') }}">{{ __('interface.news') }}</a>
+                    </div>
                     <div class="flex items-center justify-between">
                         <div>
                             <h1 class="text-lg 3xl:text-xl text-white font-ptserifreg">{{ $item->title }}</h1>

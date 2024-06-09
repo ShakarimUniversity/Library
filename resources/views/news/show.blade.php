@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg">
-        <img src="{{ $post->getThumbnail() }}" alt="image">
+        <img class="w-full" src="{{ $post->getThumbnail() }}" alt="image">
         <h1 class="text-xl text-strong-blue font-semibold border-b my-4 pb-2">{{ $post->title }}</h1>
         <p></p>
         <div>

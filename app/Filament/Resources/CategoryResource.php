@@ -20,6 +20,13 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Категории новостей';
+
+    protected static ?string $modelLabel = 'Категории новостей';
+
+    protected static ?string $pluralModelLabel = 'Категории новостей';
+
+
     public static function canAccess(): bool
     {
         $user = auth()->user();
