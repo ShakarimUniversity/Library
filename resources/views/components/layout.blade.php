@@ -38,7 +38,7 @@
             </div>
 
             <!-- Правая колонка -->
-            @include('layouts.aside')
+            @include('layouts.aside',['covers'=>\App\Models\BookCover::orderBy('created_at','desc')->limit(5)->get()])
         </div>
     </div>
 </div>

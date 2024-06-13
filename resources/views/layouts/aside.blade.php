@@ -2,21 +2,11 @@
     <p class="mb-2 py-2 border-b">НОВЫЕ ПОСТУПЛЕНИЯ</p>
     <div class="swiper-container new-books-slider h-[1200px] overflow-hidden">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img class="w-full h-auto cover" src="/img/1.jpg" alt="">
-            </div>
-            <div class="swiper-slide">
-                <img class="w-full h-auto cover" src="/img/2.jpg" alt="">
-            </div>
-            <div class="swiper-slide">
-                <img class="w-full h-auto cover" src="/img/3.jpg" alt="">
-            </div>
-            <div class="swiper-slide">
-                <img class="w-full h-auto cover" src="/img/4.jpg" alt="">
-            </div>
-            <div class="swiper-slide">
-                <img class="w-full h-auto cover" src="/img/5.jpg" alt="">
-            </div>
+            @foreach($covers as $cover)
+                <div class="swiper-slide">
+                    <img class="w-full h-auto cover" src="{{ $cover->getImage() }}" alt="book">
+                </div>
+            @endforeach
         </div>
     </div>
 </div>

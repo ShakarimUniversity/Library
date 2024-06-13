@@ -16,6 +16,7 @@ class SiteController extends Controller
         $news = Post::with('categories')->where('language',app()->getLocale())->limit(4)->get();
         $announcements = Announcement::where('language',app()->getLocale())->limit(4)->get();
 
+       // dd(\App\Models\BookCover::orderBy('created_at','desc')->limit(5)->get());
       //  dd(count($news));
         return view('site.index',compact('news','announcements'));
     }
