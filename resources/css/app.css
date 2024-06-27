@@ -27,6 +27,10 @@
     --swiper-navigation-color: #fdbb74 !important;
     --swiper-theme-color: #fdbb74 !important;
 }
+.content a{
+    color: #002C52;
+    font-weight: 400;
+}
 .swiper-container {
     width: 100%;
 }

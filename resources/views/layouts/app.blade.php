@@ -12,8 +12,10 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset("css/swiper-bundle.min.css") }}">
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css','resources/js/app.js'])
     @livewireStyles
+    <script src="//code.jivo.ru/widget/6bECXFfHly" async></script>
+
 </head>
 <body>
 <header class="bg-white">
@@ -54,6 +56,7 @@
 </div>
 
 @livewireScripts
+@livewire('wire-elements-modal')
 <script src="/js/init-alpine.js"></script>
 <script src="{{ asset("/js/swiper-bundle.min.js") }}"></script>
 @stack('scripts')

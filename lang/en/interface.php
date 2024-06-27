@@ -3,5 +3,6 @@ return [
     'news' => 'Жаңалықтар',
     'announcements' => 'Хабарландырулар',
     'more' => 'Толығырақ',
-    'load' => 'loading'
+    'load' => 'loading',
+    'new_books' => 'new books'
 ];

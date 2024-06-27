@@ -19,16 +19,35 @@ class BookCoverResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'Обложки книг';
+    protected static ?string $navigationLabel = 'Новые поступления';
 
-    protected static ?string $modelLabel = 'Обложка';
+    protected static ?string $modelLabel = 'Новые поступления';
 
-    protected static ?string $pluralModelLabel = 'Обложки книг';
+    protected static ?string $pluralModelLabel = 'Новые поступления';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\RichEditor::make('description')->columnSpanFull()
+                    ->toolbarButtons([
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'codeBlock',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ]),
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->required(),
@@ -40,6 +59,7 @@ class BookCoverResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -21,6 +21,6 @@
     </div>
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg">
         <h1 class="text-strong-blue text-xl border-b pb-4">{{ $page->{'title_'.app()->getLocale()} }}</h1>
-        <p class="mt-4">{!! $page->{'content_'.app()->getLocale()} !!}</p>
+        <div class="mt-4 content">{!! $page->{'content_'.app()->getLocale()} !!}</div>
     </div>
 </x-layout>

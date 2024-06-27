@@ -9,7 +9,7 @@ class BookCover extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['image'];
+    protected $fillable = ['image','title','description'];
 
     public function getImage()
     {
