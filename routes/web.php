@@ -34,5 +34,6 @@ Route::group([ 'middleware' => 'setlocale'],function (){
         Route::get('/announcement/{announcement:slug}', 'show')->name('announcement.show');
     });
     Route::get('/files',\App\Http\Controllers\FileController::class);
+    Route::get('/publications/{publicationsData}',[\App\Http\Controllers\PublicationsDatabaseController::class,'show'])->name('publications-database.show');
 });
 

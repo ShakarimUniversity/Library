@@ -1,4 +1,4 @@
-<x-layout metaTitle="Кітапхана" metaDescription="Шәкәрім университетінің кітапхана сайты">
+<x-app-layout metaTitle="Кітапхана" metaDescription="Шәкәрім университетінің кітапхана сайты">
     @if(count($news)>0)
     <div class="swiper-container news-swiper h-96 relative rounded-md overflow-hidden drop-shadow-lg">
         <!-- swiper slides -->
@@ -71,6 +71,64 @@
             </div>
         </div>
     </section>
+        <section>
+            <div class="font-sans flex items-center justify-center">
+                <div class="w-full" x-data="{ openTab: 1 }">
+                    <div class="w-full">
+                        <div class="mb-4 flex space-x-4 p-2 bg-white rounded-lg shadow-md">
+                          @foreach($publicationsDataCategory as $category)
+                                <button x-on:click="openTab = {{$category->id}}" :class="{ 'bg-strong-blue text-white': openTab === {{$category->id}} }" class="flex-1 py-2 px-4 rounded-md max-w-fit focus:outline-none focus:shadow-outline-blue transition-all duration-300">
+                                    {{ $category->{'title_'.app()->getLocale()} }}
+                                </button>
+                          @endforeach
+                              <button x-on:click="openTab = 0" :class="{ 'bg-strong-blue text-white': openTab === 0 }" class="flex-1 py-2 px-4 rounded-md max-w-fit focus:outline-none focus:shadow-outline-blue transition-all duration-300">
+                                  Базы данных открытого доступа
+                              </button>
+                        </div>
+                        @foreach($publicationsDataCategory as $category)
+                            <div x-show="openTab === {{$category->id}}" class="transition-all duration-300 bg-white p-4 rounded-lg shadow-md border-l-4 border-strong-blue">
+                                <div class="flex flex-wrap space-x-4">
+                                    @foreach($category->publications as $item)
+                                        <a href="{{ route('publications-database.show',$item) }}">
+                                            <img class="w-32" src="{{ $item->getLogo() }}" alt="logo">
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                        <div x-show="openTab === 0" class="transition-all duration-300 bg-white p-4 rounded-lg shadow-md border-l-4 border-strong-blue">
+                            <ul class="flex space-x-4 my-2">
+                                @foreach($databaseList as $initial => $list)
+                                    <li>
+                                        <a class="text-strong-blue" href="#{{ $initial }}">{{ $initial }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <p class="my-4">Количество баз данных: {{$databaseList->count()}}</p>
+                            <table>
+                                <tbody>
+                                @foreach($databaseList as $initial => $list)
+                                    <tr id="{{$initial}}" class="mb-2 border-t-2">
+                                        <td class="py-2" colspan="2">
+                                                <strong>{{ $initial }}</strong>
+                                        </td>
+                                    </tr>
+                                    @foreach($list as $item)
+                                        <tr class="mb-2 border-t-2">
+                                            <td class="py-2">
+                                                <a class="text-strong-blue" href="{{$item->link}}" target="_blank">{{ $item->title }}</a>
+                                            </td>
+                                            <td class="py-2 pl-2">{!! $item->{'description_'.app()->getLocale()} !!}</td>
+                                        </tr>
+                                    @endforeach
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     @push('scripts')
         <script>
             var newsSwiper = new Swiper('.news-swiper', {
@@ -90,7 +148,7 @@
             });
         </script>
     @endpush
-</x-layout>
+</x-app-layout>
 
 
 

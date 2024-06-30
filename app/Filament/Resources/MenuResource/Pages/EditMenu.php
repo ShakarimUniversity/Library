@@ -4,16 +4,16 @@ namespace App\Filament\Resources\MenuResource\Pages;
 
 use App\Filament\Resources\MenuResource;
 use Filament\Actions;
-use Filament\Resources\Pages\ManageRecords;
+use Filament\Resources\Pages\EditRecord;
 
-class ManageMenus extends ManageRecords
+class EditMenu extends EditRecord
 {
     protected static string $resource = MenuResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\DeleteAction::make(),
         ];
     }
 }

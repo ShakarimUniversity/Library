@@ -31,6 +31,10 @@
     color: #002C52;
     font-weight: 400;
 }
+.content p{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 .swiper-container {
     width: 100%;
 }
