@@ -36,7 +36,7 @@
     </div>
     @else
         <div class="rounded-md overflow-hidden my-4 bg-white drop-shadow-lg p-4">
-            <p>Жаңалықтар табылмады ...</p>
+            <p>{{ __('interface.empty') }} ...</p>
         </div>
     @endif
     <section class="rounded-md overflow-hidden text-gray-400 my-4 bg-white drop-shadow-lg">
@@ -66,7 +66,7 @@
                     </a>
                 </div>
                 @empty
-                     <p class="px-4 text-black">Хабарландыру табылмады ...</p>
+                     <p class="px-4 text-black">{{ __('interface.empty') }} ...</p>
                 @endforelse
             </div>
         </div>
@@ -82,7 +82,7 @@
                                 </button>
                           @endforeach
                               <button x-on:click="openTab = 0" :class="{ 'bg-strong-blue text-white': openTab === 0 }" class="flex-1 py-2 px-4 rounded-md max-w-fit focus:outline-none focus:shadow-outline-blue transition-all duration-300">
-                                  Базы данных открытого доступа
+                                  {{ __('interface.open_access_database') }}
                               </button>
                         </div>
                         @foreach($publicationsDataCategory as $category)
@@ -104,7 +104,7 @@
                                     </li>
                                 @endforeach
                             </ul>
-                            <p class="my-4">Количество баз данных: {{$databaseList->count()}}</p>
+                            <p class="my-4">{{ __('number_databases') }}: {{$databaseList->count()}}</p>
                             <table>
                                 <tbody>
                                 @foreach($databaseList as $initial => $list)

@@ -1,4 +1,4 @@
-<x-layout :meta-title="$post->meta_title ?: $post->title" :meta-description="$post->meta_description">
+<x-app-layout :meta-title="$post->meta_title ?: $post->title" :meta-description="$post->meta_description">
 
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg mb-2 ">
         <div class="flex items-center flex-wrap">
@@ -31,4 +31,4 @@
         </div>
     </div>
 
-</x-layout>
+</x-app-layout>

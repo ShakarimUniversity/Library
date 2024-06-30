@@ -1,4 +1,4 @@
-<x-layout metaTitle="Файлы" metaDescription="Test description">
+<x-app-layout metaTitle="Файлы" metaDescription="Test description">
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg mb-2 ">
         <div class="flex items-center flex-wrap">
             <ul class="flex items-center">
@@ -20,4 +20,4 @@
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg">
         <livewire:lib-files />
     </div>
-</x-layout>
+</x-app-layout>

@@ -75,6 +75,7 @@ class PublicationsDataResource extends Resource
                 Section::make('')
                     ->schema([
                         Forms\Components\FileUpload::make('logo')
+                            ->required()
                             ->image()
                             ->directory('logo')
                             ->label('logo'),

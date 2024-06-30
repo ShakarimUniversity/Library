@@ -1,4 +1,4 @@
-<x-layout metaTitle="test" metaDescription="">
+<x-app-layout metaTitle="test" metaDescription="">
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg mb-2 ">
         <div class="flex items-center flex-wrap">
             <ul class="flex items-center">
@@ -20,4 +20,4 @@
         <h1 class="text-strong-blue text-xl border-b pb-4">{{ $publicationsData->{'title_'.app()->getLocale()} }}</h1>
         <div class="mt-4 content">{!! $publicationsData->{'description_'.app()->getLocale()} !!}</div>
     </div>
-</x-layout>
+</x-app-layout>

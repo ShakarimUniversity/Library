@@ -1,4 +1,4 @@
-<x-layout :meta-title="$announcement->title" meta-description="">
+<x-app-layout :meta-title="$announcement->title" meta-description="">
 
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg mb-2 ">
         <div class="flex items-center flex-wrap">
@@ -32,4 +32,4 @@
         </div>
     </div>
 
-</x-layout>
+</x-app-layout>

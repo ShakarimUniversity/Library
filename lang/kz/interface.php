@@ -10,5 +10,8 @@ return [
     'size'=>'Көлемі',
     'created_at' => 'Енгізілді',
     'files' => 'Файлдар',
-    'new_books' => 'Жаңа кітаптар'
+    'new_books' => 'Жаңа кітаптар',
+    'open_access_database' => 'Ашық қол жетімді дерекқорлары',
+    'empty' => 'бос',
+    'number_databases' => 'Мәліметтер базасының саны'
 ];
