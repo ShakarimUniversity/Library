@@ -104,7 +104,7 @@
                                     </li>
                                 @endforeach
                             </ul>
-                            <p class="my-4">{{ __('number_databases') }}: {{$databaseList->count()}}</p>
+                            <p class="my-4">{{ __('interface.number_databases') }}: {{$databaseListCount}}</p>
                             <table>
                                 <tbody>
                                 @foreach($databaseList as $initial => $list)

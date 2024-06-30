@@ -27,10 +27,15 @@ class SiteController extends Controller
 //        });
 
         $databaseList = Cache::remember('databaseList',120,function(){
-            return DatabaseList::all()->groupBy(function($databaseList) {
+            return DatabaseList::orderBy('initial')->get()->groupBy(function($databaseList) {
                 return $databaseList->initial;
             });
         });
+        $databaseListCount = Cache::remember('databaseListCount',120,function(){
+            return DatabaseList::count();
+        });
+
+       // dd($databaseListCount);
 
 //        dd(DatabaseList::all()->groupBy(function($databaseList) {
 //            return $databaseList->initial;
@@ -39,6 +44,6 @@ class SiteController extends Controller
        // dd($databaseList);
        // dd(\App\Models\BookCover::orderBy('created_at','desc')->limit(5)->get());
       //  dd(count($news));
-        return view('site.index',compact('news','announcements','publicationsDataCategory','databaseList'));
+        return view('site.index',compact('news','announcements','publicationsDataCategory','databaseList','databaseListCount'));
     }
 }
