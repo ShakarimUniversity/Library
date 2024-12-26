@@ -39,7 +39,7 @@
             <p>{{ __('interface.empty') }} ...</p>
         </div>
     @endif
-    <section class="rounded-md overflow-hidden text-gray-400 my-4 bg-white drop-shadow-lg">
+    <section class="rounded-md overflow-hidden my-4 bg-white drop-shadow-lg">
         <div class="container mx-auto px-4">
             <div class="flex flex-col">
                 <div class="flex flex-wrap sm:flex-row justify-between py-6 mb-2">
@@ -75,7 +75,7 @@
             <div class="font-sans flex items-center justify-center">
                 <div class="w-full" x-data="{ openTab: 1 }">
                     <div class="w-full">
-                        <div class="mb-4 flex space-x-4 p-2 bg-white rounded-lg shadow-md">
+                        <div class="mb-4 flex flex-col md:flex-row items-center space-x-4 p-2 bg-white rounded-lg shadow-md">
                           @foreach($publicationsDataCategory as $category)
                                 <button x-on:click="openTab = {{$category->id}}" :class="{ 'bg-strong-blue text-white': openTab === {{$category->id}} }" class="flex-1 py-2 px-4 rounded-md max-w-fit focus:outline-none focus:shadow-outline-blue transition-all duration-300">
                                     {{ $category->{'title_'.app()->getLocale()} }}
