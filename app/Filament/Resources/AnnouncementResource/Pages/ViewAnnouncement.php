@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\PostResource\Pages;
+namespace App\Filament\Resources\AnnouncementResource\Pages;
 
 
 use App\Filament\Resources\AnnouncementResource;

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset("css/swiper-bundle.min.css") }}">
     @vite('resources/css/app.css')
     @livewireStyles
+    <script src="//code.jivo.ru/widget/6bECXFfHly" async></script>
 </head>
 <body>
 <header class="bg-white">
@@ -37,7 +38,7 @@
             </div>
 
             <!-- Правая колонка -->
-            @include('layouts.aside',['covers'=>\App\Models\BookCover::orderBy('created_at','desc')->limit(5)->get()])
+            @include('layouts.aside',['covers'=>\App\Models\BookCover::orderBy('created_at','desc')->limit(10)->get()])
         </div>
     </div>
 </div>

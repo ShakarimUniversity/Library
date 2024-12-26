@@ -17,8 +17,8 @@ class SiteController extends Controller
 
        // dd(\App\Models\Menu::with(['category','children','page'])->where(['active'=>true,'category_id'=>1])->where('parent_id','=',NULL)->get());
 
-        $news = Post::with('categories')->where('language',app()->getLocale())->limit(4)->get();
-        $announcements = Announcement::where('language',app()->getLocale())->limit(4)->get();
+        $news = Post::with('categories')->where('language',app()->getLocale())->where('active',true)->limit(4)->get();
+        $announcements = Announcement::where('language',app()->getLocale())->where('active',true)->limit(4)->get();
 
         $publicationsDataCategory = PublicationsDataCategory::with('publications')->get();
 

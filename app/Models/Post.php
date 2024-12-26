@@ -39,6 +39,12 @@ class Post extends Model
         return $this->published_at->format('F jS Y');
     }
 
+    public function setPublishedAtAttribute($value)
+    {
+        $this->attributes['published_at'] = $value ?: now();
+    }
+
+
     public function getThumbnail()
     {
         if (str_starts_with($this->thumbnail, 'http')) {

@@ -27,8 +27,8 @@
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg">
         <img class="w-full" src="{{ $announcement->getThumbnail() }}" alt="image">
         <h1 class="text-xl text-strong-blue font-semibold border-b my-4 pb-2">{{ $announcement->title }}</h1>
-        <div>
-            <p>{!! $announcement->content !!}</p>
+        <div class="tiptap-content">
+            {!! $announcement->content !!}
         </div>
     </div>
 

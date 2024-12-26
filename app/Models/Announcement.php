@@ -29,4 +29,9 @@ class Announcement extends Model
 
         return '/storage/' . $this->thumbnail;
     }
+
+    public function setPublishedAtAttribute($value)
+    {
+        $this->attributes['published_at'] = $value ?: now();
+    }
 }

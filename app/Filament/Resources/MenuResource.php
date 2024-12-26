@@ -50,6 +50,7 @@ class MenuResource extends Resource
                             ->numeric()
                             ->default(0),
                         Forms\Components\Select::make('category_id')
+                            ->required()
                             ->relationship('category', 'title'),
                         Forms\Components\Toggle::make('active')
                             ->required()

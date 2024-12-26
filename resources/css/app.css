@@ -204,3 +204,14 @@ img{
      grid-template-columns: repeat(5, 1fr);
  }
 }
+.content table{
+    width:100% !important;
+}
+.content table, th, td {
+    border: 0.3px solid #4a4545;
+    border-collapse: collapse;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}

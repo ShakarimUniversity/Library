@@ -1,4 +1,4 @@
-<x-app-layout :meta-title="$post->meta_title ?: $post->title" :meta-description="$post->meta_description">
+ <x-app-layout :meta-title="$post->meta_title ?: $post->title" :meta-description="$post->meta_description">
 
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg mb-2 ">
         <div class="flex items-center flex-wrap">
@@ -26,8 +26,8 @@
         <img class="w-full" src="{{ $post->getThumbnail() }}" alt="image">
         <h1 class="text-xl text-strong-blue font-semibold border-b my-4 pb-2">{{ $post->title }}</h1>
         <p></p>
-        <div>
-            <p>{!! $post->content !!}</p>
+        <div class="tiptap-content">
+            {!! $post->content !!}
         </div>
     </div>
 

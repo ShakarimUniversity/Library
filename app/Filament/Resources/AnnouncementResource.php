@@ -42,6 +42,7 @@ class AnnouncementResource extends Resource
                 Forms\Components\Card::make()
                     ->schema([
                         Forms\Components\Select::make('language')
+                            ->required()
                             ->options([
                                 'kz' => 'Казақша',
                                 'ru' => 'Русский',
