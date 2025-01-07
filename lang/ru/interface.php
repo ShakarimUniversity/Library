@@ -13,5 +13,6 @@ return [
     'new_books' => 'Новые поступления',
     'open_access_database' => 'Базы данных открытого доступа',
     'empty' => 'пусто',
-    'number_databases' => 'Количество баз данных'
+    'number_databases' => 'Количество баз данных',
+    'view' => 'Просмотреть'
 ];

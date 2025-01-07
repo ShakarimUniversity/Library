@@ -13,5 +13,6 @@ return [
     'new_books' => 'Жаңа кітаптар',
     'open_access_database' => 'Ашық қол жетімді дерекқорлары',
     'empty' => 'бос',
-    'number_databases' => 'Мәліметтер базасының саны'
+    'number_databases' => 'Мәліметтер базасының саны',
+    'view' => 'Көру'
 ];
