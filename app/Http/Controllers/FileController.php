@@ -22,38 +22,57 @@ class FileController extends Controller
     public function getPdf(Request $request, $fileId)
     {
         try {
-            // Проверяем есть ли файл в кеше
-            $cacheKey = "pdf_file_{$fileId}";
+            // Инициализируем запрос к внешнему API
+            $response = Http::withHeaders([
+                'Accept' => 'application/pdf'
+            ])
+                ->withOptions([
+                    'stream' => true,  // Включаем потоковую передачу
+                    'timeout' => 0     // Отключаем таймаут для больших файлов
+                ])
+                ->get("https://api.semgu.kz/ebooks/view.php",['id'=>$fileId]);
 
-            if (Cache::has($cacheKey)) {
-                $fileContent = Cache::get($cacheKey);
-            } else {
-                // Получаем файл с внешнего сервера
-                $response = Http::withHeaders([
-                    'Accept' => 'application/pdf'
-                ])->get("https://api.semgu.kz/ebooks/view.php",['id'=>$fileId]);
-
-                if (!$response->successful()) {
-                    return response()->json([
-                        'error' => 'Failed to fetch PDF from external server'
-                    ], $response->status());
-                }
-
-                $fileContent = $response->body();
-
-                // Кешируем файл на короткое время
-                Cache::put($cacheKey, $fileContent, now()->addMinutes(5));
+            if (!$response->successful()) {
+                return response()->json([
+                    'error' => 'Failed to fetch PDF from external server'
+                ], $response->status());
             }
 
-            // Возвращаем PDF с правильными заголовками
-            return response($fileContent)
-                ->header('Content-Type', 'application/pdf')
-                ->header('Content-Disposition', 'inline; filename="document.pdf"')
-                ->header('Content-Length', strlen($fileContent))
-                ->header('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0')
-                ->header('Pragma', 'no-cache')
-                ->header('X-Frame-Options', 'SAMEORIGIN')
-                ->header('X-Content-Type-Options', 'nosniff');
+            // Получаем размер файла, если сервер его предоставляет
+            $contentLength = $response->header('Content-Length');
+
+            // Настраиваем заголовки ответа
+            $headers = [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="document.pdf"',
+                'Cache-Control' => 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0',
+                'Pragma' => 'no-cache',
+                'X-Frame-Options' => 'SAMEORIGIN',
+                'X-Content-Type-Options' => 'nosniff'
+            ];
+
+            if ($contentLength) {
+                $headers['Content-Length'] = $contentLength;
+            }
+
+            // Создаем потоковый ответ
+            return response()->stream(
+                function () use ($response) {
+                    // Получаем поток данных
+                    $stream = $response->toPsrResponse()->getBody()->detach();
+
+                    // Читаем и отправляем данные небольшими частями
+                    while (!feof($stream)) {
+                        echo fread($stream, 8192); // Читаем по 8KB за раз
+                        flush();
+                    }
+
+                    // Закрываем поток
+                    fclose($stream);
+                },
+                200,
+                $headers
+            );
 
         } catch (\Exception $e) {
             return response()->json([

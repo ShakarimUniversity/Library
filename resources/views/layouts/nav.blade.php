@@ -19,7 +19,7 @@
                             </svg>
                         </button>
 
-                        <div x-show="openMenu === {{ $item->id }}" class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-52 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-gray-900/5"
+                        <div x-cloak x-show="openMenu === {{ $item->id }}" class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-52 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-gray-900/5"
 						  x-transition:enter="transition ease-in duration-150"
                         x-transition:enter-start="opacity-0"
                         x-transition:enter-end="opacity-100"
