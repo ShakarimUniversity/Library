@@ -33,7 +33,9 @@ Route::group([ 'middleware' => 'setlocale'],function (){
         Route::get('/announcements', 'index')->name('announcements');
         Route::get('/announcement/{announcement:slug}', 'show')->name('announcement.show');
     });
-    Route::get('/files',\App\Http\Controllers\FileController::class);
+    Route::get('/files',[\App\Http\Controllers\FileController::class,'index']);
+    Route::get('/file/show/{id}',[\App\Http\Controllers\FileController::class,'show'])->name('file.show');
+    Route::get('/file/getPdf/{fileId}',[\App\Http\Controllers\FileController::class,'getPdf'])->name('get.pdf');
     Route::get('/publications/{publicationsData}',[\App\Http\Controllers\PublicationsDatabaseController::class,'show'])->name('publications-database.show');
 });
 

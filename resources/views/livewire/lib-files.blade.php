@@ -42,7 +42,7 @@
                     <tr class="text-gray-700 dark:text-gray-400">
                         <td class="px-4 py-3">{{ $file->bookname }}</td>
                         <td class="px-4 py-3">
-                            <a href="#"
+                            <a href="{{ route('file.show',['id'=>$file->ebookid]) }}"
                                class="text-sm font-medium text-purple-600 dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                aria-label="Edit"
                                title="{{ __('interface.view') }}"
