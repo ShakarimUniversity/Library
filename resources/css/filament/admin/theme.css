@@ -6,3 +6,6 @@
 /*.fi-sidebar {*/
 /*    @apply bg-amber-700 !important;*/
 /*}*/
+.fi-ta-text-item{
+    white-space: normal !important;
+}

@@ -25,6 +25,8 @@ class DatabaseListResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Базы данных открытого доступа';
 
+    protected static ?string $navigationGroup = 'Базы данных';
+
 
     public static function form(Form $form): Form
     {

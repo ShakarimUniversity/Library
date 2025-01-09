@@ -6,7 +6,7 @@
                 wire:change="selectCategory($event.target.value)"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" name="parent_id">
             @foreach($categories as $category)
-                <option value={{ $category->typeid }}>{{ $category->nameru }}</option>
+                <option value={{ $category->id }}>{{ $category->name_ru }}</option>
             @endforeach
         </select>
     </div>
@@ -40,9 +40,9 @@
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 @foreach($files as $file)
                     <tr class="text-gray-700 dark:text-gray-400">
-                        <td class="px-4 py-3">{{ $file->bookname }}</td>
+                        <td class="px-4 py-3">{{ $file->book_name }}</td>
                         <td class="px-4 py-3">
-                            <a href="{{ route('file.show',['id'=>$file->ebookid]) }}"
+                            <a href="{{ route('file.show',['id'=>$file->id]) }}"
                                class="text-sm font-medium text-purple-600 dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                aria-label="Edit"
                                title="{{ __('interface.view') }}"

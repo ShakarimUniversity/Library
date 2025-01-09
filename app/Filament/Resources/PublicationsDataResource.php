@@ -28,6 +28,8 @@ class PublicationsDataResource extends Resource
 
     protected static ?string $pluralModelLabel = 'База данных';
 
+    protected static ?string $navigationGroup = 'Базы данных';
+
     public static function form(Form $form): Form
     {
         return $form

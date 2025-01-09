@@ -146,6 +146,7 @@
 
     loadingTask.onProgress = function(progress) {
         const percent = Math.round((progress.loaded / progress.total) * 100);
+        console.log(progress.total);
         document.getElementById('progress-text').textContent = `${percent}%`;
     };
 

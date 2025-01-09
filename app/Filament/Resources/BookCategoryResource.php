@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PublicationsDataCategoryResource\Pages;
-use App\Filament\Resources\PublicationsDataCategoryResource\RelationManagers;
-use App\Models\PublicationsDataCategory;
+use App\Filament\Resources\BookCategoryResource\Pages;
+use App\Filament\Resources\BookCategoryResource\RelationManagers;
+use App\Models\BookCategory;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,31 +13,29 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PublicationsDataCategoryResource extends Resource
+class BookCategoryResource extends Resource
 {
-    protected static ?string $model = PublicationsDataCategory::class;
+    protected static ?string $model = BookCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = 'Категории базы данных';
+    protected static ?string $navigationLabel = 'Категория';
 
-    protected static ?string $modelLabel = 'Категории базы данных';
+    protected static ?string $modelLabel = 'Категория';
 
-    protected static ?string $pluralModelLabel = 'Категории базы данных';
+    protected static ?string $pluralModelLabel = 'Категория';
 
-    protected static ?string $navigationGroup = 'Базы данных';
+    protected static ?string $navigationGroup = 'Электронные ресурсы';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title_kz')
+                Forms\Components\TextInput::make('name_kz')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('title_ru')
+                Forms\Components\TextInput::make('name_ru')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('title_en')
                     ->maxLength(255),
             ]);
     }
@@ -46,11 +44,9 @@ class PublicationsDataCategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title_kz')
+                Tables\Columns\TextColumn::make('name_kz')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('title_ru')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('title_en')
+                Tables\Columns\TextColumn::make('name_ru')
                     ->searchable(),
             ])
             ->filters([
@@ -70,7 +66,7 @@ class PublicationsDataCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManagePublicationsDataCategories::route('/'),
+            'index' => Pages\ManageBookCategories::route('/'),
         ];
     }
 }

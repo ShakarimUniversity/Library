@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Models\Book;
+use App\Models\BookCategory;
 use App\Models\CategoryLibFile;
 use App\Models\LibFile;
 use Illuminate\Support\Facades\Cache;
@@ -16,22 +18,17 @@ class LibFiles extends Component
 
     public function mount()
     {
-        $this->categories = Cache::remember('files_categories', now()->addDays(1), function() {
-            return Http::get('https://api.semgu.kz/ebooks/types.php')->object();
-        });
+        $this->categories = BookCategory::all();
         if($this->categories){
-            $this->category_id = $this->categories[0]->typeid;
-            $this->files = Http::get('https://api.semgu.kz/ebooks/index.php',[
-                'type' => $this->category_id
-            ])->object();
+            $this->category_id = $this->categories[0]->id;
+            $this->files = Book::query()->where('category_id',$this->category_id)->get();
         }
+
     }
 
     public function selectCategory($id)
     {
-        $this->files = Http::get('https://api.semgu.kz/ebooks/index.php',[
-            'type' => $id
-        ])->object();
+        $this->files = Book::query()->where('category_id',$id)->get();
     }
 
     public function render()
