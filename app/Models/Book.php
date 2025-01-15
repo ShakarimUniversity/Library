@@ -27,4 +27,8 @@ class Book extends Model
         }
         return null;
     }
+
+    public function scopeSearch($query, $value){
+        $query->where('book_name','like',"%{$value}%")->orWhere('author','like',"%{$value}%");
+    }
 }

@@ -1,15 +1,21 @@
 <div>
-    <div class="">
-        <label for="inputType" class="text-sm font-medium text-gray-900 block mb-2">Категория</label>
-        <select wire:model="category_id"
-                id="inputType"
-                wire:change="selectCategory($event.target.value)"
-                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" name="parent_id">
-            @foreach($categories as $category)
-                <option value={{ $category->id }}>{{ $category->name_ru }}</option>
-            @endforeach
-        </select>
+    <div class="flex items-end space-x-4">
+        <div class="">
+            <label for="inputType" class="text-sm font-medium text-gray-900 block mb-2">Категория</label>
+            <select wire:model="category_id"
+                    id="inputType"
+                    wire:change="selectCategory($event.target.value)"
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" name="parent_id">
+                @foreach($categories as $category)
+                    <option value={{ $category->id }}>{{ $category->name_ru }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="flex-1">
+            <input wire:model.live.debounce.300ms="search" type="text" class="shadow-sm bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5" name="search" placeholder="Поиск ...">
+        </div>
     </div>
+
     <div wire:loading class="mx-auto w-full">
         <div class="flex justify-center items-center text-center text-base font-semibold my-4">
             <svg width="20" height="20" fill="currentColor" class="mr-2 animate-spin" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +46,7 @@
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 @foreach($files as $file)
                     <tr class="text-gray-700 dark:text-gray-400">
-                        <td class="px-4 py-3">{{ $file->book_name }}</td>
+                        <td class="px-4 py-3">{{ $file->book_name }} <br><span class="italic font-medium mr-2">Автор: </span>{{ $file->author }} </td>
                         <td class="px-4 py-3">
                             <a href="{{ route('file.show',['id'=>$file->id]) }}"
                                class="text-sm font-medium text-purple-600 dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
@@ -60,6 +66,9 @@
                 @endforeach
                 </tbody>
             </table>
+            <div class="p-4">
+                {{ $files->links() }}
+            </div>
         </div>
         @endif
     </div>
