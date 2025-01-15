@@ -28,7 +28,7 @@ class FileController extends Controller
     {
         $book = Book::query()->select('file_name')->where('id',$fileId)->first();
 
-        $path = storage_path('app/public/ebooks/' . $book->file_name);
+        $path = storage_path('app/public/' . $book->file_name);
 
         if (!file_exists($path)) {
             abort(404);

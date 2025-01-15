@@ -5,6 +5,7 @@ module.exports = {
         "./resources/**/*.js",
         "./resources/**/*.vue",
         './vendor/wire-elements/modal/resources/views/*.blade.php',
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
     ],
     safelist: [
         {

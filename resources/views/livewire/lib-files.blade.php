@@ -39,6 +39,7 @@
             <table id="teachersTable" class="w-full whitespace-no-wrap shadow-lg">
                 <thead>
                 <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <th class="px-4 py-3">#</th>
                     <th class="px-4 py-3">{{ __('interface.filename') }}</th>
                     <th class="px-4 py-3"></th>
                 </tr>
@@ -46,6 +47,7 @@
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 @foreach($files as $file)
                     <tr class="text-gray-700 dark:text-gray-400">
+                        <td class="px-4 py-3">{{ $loop->iteration + ($files->currentPage() - 1) * $files->perPage() }}</td>
                         <td class="px-4 py-3">{{ $file->book_name }} <br><span class="italic font-medium mr-2">Автор: </span>{{ $file->author }} </td>
                         <td class="px-4 py-3">
                             <a href="{{ route('file.show',['id'=>$file->id]) }}"
