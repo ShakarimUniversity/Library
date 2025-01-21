@@ -36,23 +36,29 @@ class MenuResource extends Resource
                 Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\TextInput::make('title_kz')
+                            ->label('Заголовок(kz)')
                             ->required()
                             ->maxLength(255),
                         Forms\Components\TextInput::make('title_ru')
+                            ->label('Заголовок(ru)')
                             ->required()
                             ->maxLength(255),
                         Forms\Components\Select::make('parent_id')
+                            ->label('Родительское меню')
                             ->options(Menu::all()->pluck('title_kz', 'id')),
                         Forms\Components\TextInput::make('link')
+                            ->label('Ссылка')
                             ->maxLength(255),
                         Forms\Components\TextInput::make('sort')
                             ->required()
                             ->numeric()
                             ->default(0),
                         Forms\Components\Select::make('category_id')
+                            ->label('Категория')
                             ->required()
                             ->relationship('category', 'title'),
                         Forms\Components\Toggle::make('active')
+                            ->label('Активный')
                             ->required()
                             ->default(1),
                     ]),
@@ -65,6 +71,7 @@ class MenuResource extends Resource
                                 Tabs\Tab::make('kz')
                                     ->schema([
                                         Forms\Components\TextInput::make('title_kz')
+                                            ->label('Заголовок(kz)')
                                             ->maxLength(255)
                                             ->reactive()
                                             ->debounce(500)
@@ -72,6 +79,7 @@ class MenuResource extends Resource
                                                 $set('slug', Str::slug($state));
                                             }),
                                         TiptapEditor::make('content_kz')
+                                            ->label('Контент(kz)')
                                             ->requiredWith('title_kz')
                                             ->directory('page')
                                             ->columnSpanFull(),
@@ -79,9 +87,11 @@ class MenuResource extends Resource
                                 Tabs\Tab::make('ru')
                                     ->schema([
                                         Forms\Components\TextInput::make('title_ru')
+                                            ->label('Заголовок(ru)')
                                             ->requiredWith('title_kz')
                                             ->maxLength(255),
                                         TiptapEditor::make('content_ru')
+                                            ->label('Контент(ru)')
                                             ->requiredWith('title_kz')
                                             ->directory('page')
                                             ->columnSpanFull(),
@@ -92,8 +102,10 @@ class MenuResource extends Resource
                             ->unique(ignorable: fn ($record) => $record)
                             ->maxLength(255),
                         Forms\Components\Select::make('parent_id')
+                            ->label('Родительская страница')
                             ->options(Page::all()->pluck('title_kz', 'id')),
                         Forms\Components\Toggle::make('active')
+                            ->label('Активный')
                             ->default(1),
                     ])
             ]);
@@ -104,20 +116,20 @@ class MenuResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title_kz')
+                    ->label('Заголовок(kz)')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('title_ru')
+                    ->label('Заголовок(кг)')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('parent.title_kz')
-                    ->numeric()
+                    ->label('Родительское меню')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('link')
-                    ->searchable(),
+                    ->label('Ссылка'),
                 Tables\Columns\TextColumn::make('sort')
-                    ->numeric()
-                    ->sortable(),
+                    ->numeric(),
                 Tables\Columns\TextColumn::make('category_id')
-                    ->numeric()
-                    ->sortable(),
+                    ->label('Категория'),
                 Tables\Columns\IconColumn::make('active')
                     ->boolean(),
             ])

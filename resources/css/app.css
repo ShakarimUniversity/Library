@@ -6,6 +6,9 @@
 @tailwind utilities;
 
 @layer base {
+    u{
+        text-decoration: none;
+    }
     @font-face {
         font-family: "PTSerif-Regular";
         src: url("../../public/fonts/PTSerif-Regular.ttf") format("truetype");
@@ -28,13 +31,18 @@
     --swiper-theme-color: #fdbb74 !important;
 }
 .content a{
-    color: #002C52;
+    color: #002C52 !important;
     font-weight: 400;
+    text-decoration: underline;
 }
 .content p{
     padding-top: 10px;
     padding-bottom: 10px;
 }
+.content ol {
+     list-style: decimal !important;
+     margin: 1em 0 1em 36px;
+ }
 .swiper-container {
     width: 100%;
 }
