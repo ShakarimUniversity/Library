@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Menu extends Model
 {
@@ -39,4 +40,20 @@ class Menu extends Model
         return $this->hasOne(Menu::class,'parent_id','id');
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function () {
+            Cache::forget('menu');
+        });
+
+        static::updated(function () {
+            Cache::forget('menu');
+        });
+
+        static::deleted(function () {
+            Cache::forget('menu');
+        });
+    }
 }

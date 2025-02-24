@@ -23,7 +23,7 @@ class AppLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        $nav = Cache::remember('menu',120,function(){
+        $nav = Cache::remember('menu',now()->addDay(),function(){
             return \App\Models\Menu::with(['category','children'=>function($q){
                 return $q->with('page');
             },'page'])
