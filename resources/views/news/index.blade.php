@@ -21,7 +21,7 @@
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg">
         @forelse($posts as $post)
         <div class="flex space-x-4 border-b mb-4 pb-4">
-            <img src="{{ $post->getThumbnail() }}" class="w-60" alt="{{ $post->title }}">
+            <img src="{{ $post->getThumbnail() }}" class="w-60 object-cover" alt="{{ $post->title }}">
             <div>
                 <h1 class="font-semibold text-strong-blue text-lg pb-2">{{ $post->title }}</h1>
                 <p>{!! $post->shortBody() !!}</p>
@@ -34,5 +34,8 @@
            <p>Жаңалықтар табылмады ...</p>
         @endforelse
     </div>
+<div>
+{{$posts->links()}}
+</div>
 
 </x-app-layout>

@@ -21,7 +21,7 @@
     <div class="bg-white mx-2 p-4 rounded-md shadow-lg">
         @forelse($announcements as $announcement)
             <div class="flex space-x-4 border-b mb-4 pb-4">
-                <img src="{{ $announcement->getThumbnail() }}" class="w-60" alt="{{ $announcement->title }}">
+                <img src="{{ $announcement->getThumbnail() }}" class="w-60 object-cover" alt="{{ $announcement->title }}">
                 <div>
                     <h1 class="font-semibold text-strong-blue text-lg pb-2">{{ $announcement->title }}</h1>
                     <p>{!! $announcement->shortBody() !!}</p>

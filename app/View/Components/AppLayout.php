@@ -14,8 +14,8 @@ class AppLayout extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public string $metaTitle,
-        public string $metaDescription,
+        public string $metaTitle = '',
+        public string $metaDescription = '',
     ) {}
 
     /**

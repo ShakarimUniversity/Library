@@ -29,7 +29,7 @@
                         <ul class="mt-2">
                             @foreach($item->children as $child)
                                 <li class="text-gray-200 font-semibold ml-2 py-2">
-                                    <a href="{{ $child->page ? route('page',$child->page) : '#' }}">{{ $child->{'title_'.app()->getLocale()} }}</a>
+                                    <a href="{{ $child->link ?? ($child->page ? route('page',$child->page) : '#') }}">{{ $child->{'title_'.app()->getLocale()} }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -39,7 +39,7 @@
             </li>
             @else
                 <li class="text-white font-semibold py-2">
-                    <a href="{{ $item->page ? route('page',$item->page) : '#' }}">{{ $item->{'title_'.app()->getLocale()} }}</a>
+                    <a href="{{ $item->link ?? ($item->page ? route('page',$item->page) : '#') }}">{{ $item->{'title_'.app()->getLocale()} }}</a>
                 </li>
             @endif
         @endforeach

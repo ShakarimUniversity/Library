@@ -52,7 +52,7 @@
 </div>
 <!-- Footer Content -->
 <div>
-    <p class="w-full text-center text-base py-4 bg-strong-blue text-white">НАО Университет имени Шакарима города Семей. © 2001-2024. Все права защищены.</p>
+    <p class="w-full text-center text-base py-4 bg-strong-blue text-white">НАО Университет имени Шакарима города Семей. © 2001-2025. Все права защищены.</p>
 </div>
 
 @livewireScripts

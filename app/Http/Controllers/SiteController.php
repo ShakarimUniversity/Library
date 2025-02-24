@@ -15,16 +15,9 @@ class SiteController extends Controller
 {
     public function __invoke(){
 
-       // dd(\App\Models\Menu::with(['category','children','page'])->where(['active'=>true,'category_id'=>1])->where('parent_id','=',NULL)->get());
-
-        $news = Post::with('categories')->where('language',app()->getLocale())->where('active',true)->limit(4)->get();
-        $announcements = Announcement::where('language',app()->getLocale())->where('active',true)->limit(4)->get();
-
+        $news = Post::with('categories')->where('language',app()->getLocale())->where('active',true)->orderBy('published_at','desc')->limit(4)->get();
+        $announcements = Announcement::where('language',app()->getLocale())->where('active',true)->orderBy('published_at','desc')->limit(4)->get();
         $publicationsDataCategory = PublicationsDataCategory::with('publications')->get();
-
-//        $databaseList = DatabaseList::all()->groupBy(function($databaseList) {
-//            return $databaseList->initial;
-//        });
 
         $databaseList = Cache::remember('databaseList',120,function(){
             return DatabaseList::orderBy('initial')->get()->groupBy(function($databaseList) {
@@ -35,15 +28,6 @@ class SiteController extends Controller
             return DatabaseList::count();
         });
 
-       // dd($databaseListCount);
-
-//        dd(DatabaseList::all()->groupBy(function($databaseList) {
-//            return $databaseList->initial;
-//        }));
-
-       // dd($databaseList);
-       // dd(\App\Models\BookCover::orderBy('created_at','desc')->limit(5)->get());
-      //  dd(count($news));
         return view('site.index',compact('news','announcements','publicationsDataCategory','databaseList','databaseListCount'));
     }
 }

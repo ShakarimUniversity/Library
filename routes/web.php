@@ -23,7 +23,7 @@ Route::post('language', function (Request $request) {
 })->name('language');
 
 Route::group([ 'middleware' => 'setlocale'],function (){
-    Route::get('/', \App\Http\Controllers\SiteController::class);
+    Route::get('/', \App\Http\Controllers\SiteController::class)->name('main');
     Route::get('/pages/{page:slug}',\App\Http\Controllers\PageController::class)->name('page');
     Route::controller(\App\Http\Controllers\NewsController::class)->group(function () {
         Route::get('/news', 'index')->name('news');
