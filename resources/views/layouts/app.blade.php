@@ -19,12 +19,19 @@
 </head>
 <body>
 <header class="bg-white">
-    <div class="max-w-7xl flex items-center space-x-8 py-4 px-4 md:px-0 mx-auto">
-        <a class="cursor-pointer" href="/"><img class="w-20 md:w-24" src="/logo.png" alt="logo"></a>
-        <div class="flex flex-col">
-            <h1 class="text-xl md:text-2xl uppercase text-strong-blue font-ptserif">{{ __('interface.library') }}</h1>
-            <p class="text-base md:text-lg font-ptserifreg">{{ __('interface.company_namy') }}</p>
+    <div class="max-w-7xl flex items-center justify-between space-x-8 py-4 px-4 md:px-0 mx-auto">
+        <div>
+            <a class="cursor-pointer" href="/"><img class="w-20 md:w-24" src="/logo.png" alt="logo"></a>
+            <div class="flex flex-col">
+                <h1 class="text-xl md:text-2xl uppercase text-strong-blue font-ptserif">{{ __('interface.library') }}</h1>
+                <p class="text-base md:text-lg font-ptserifreg">{{ __('interface.company_namy') }}</p>
+            </div>
         </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            @include('partials/language_switcher')
+            {{--            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>--}}
+        </div>
+
     </div>
     @include('layouts.nav',[
     'nav' => \App\Models\Menu::with(['category','children','page'])->where(['active'=>true,'category_id'=>1])->where('parent_id','=',NULL)->get(),

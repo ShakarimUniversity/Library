@@ -211,9 +211,14 @@ img{
 .content table{
     width:100% !important;
 }
-.content table, th, td {
+.content table {
+    display: block;
+    overflow-x: auto;
     border: 0.3px solid #8c8484;
     border-collapse: collapse;
+}
+
+.content th, td {
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 4px;

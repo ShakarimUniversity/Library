@@ -14,11 +14,15 @@
 </head>
 <body>
 <header class="bg-white">
-    <div class="max-w-7xl flex items-center space-x-4 py-4 px-4 md:px-0 mx-auto">
+    <div class="max-w-7xl flex items-center space-x-4 py-4 px-4 mx-auto">
         <a href="/"><img class="w-32 md:w-24" src="/liblogo.png" alt="logo"></a>
         <div class="flex flex-col">
             <h1 class="text-xl md:text-2xl uppercase text-strong-blue font-ptserif">{{ __('interface.library') }}</h1>
             <p class="text-base md:text-lg font-ptserifreg">{{ __('interface.company_namy') }}</p>
+        </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            @include('partials/language_switcher')
+            {{--            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>--}}
         </div>
     </div>
     @include('layouts.nav',['nav'=>$nav])
