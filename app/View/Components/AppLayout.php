@@ -27,7 +27,7 @@ class AppLayout extends Component
             return \App\Models\Menu::with(['category','children'=>function($q){
                 return $q->with('page');
             },'page'])
-            ->where(['active'=>true,'category_id'=>1,'parent_id'=>NULL])->get();
+            ->where(['active'=>true,'category_id'=>1,'parent_id'=>NULL])->orderBy('sort')->get();
         });
 
         $sidebarNav = Cache::remember('sidebarNav',120,function(){

@@ -8,7 +8,7 @@
                 </svg>
             </button>
         </div>
-        <div class="hidden lg:flex lg:gap-x-12">
+        <div class="hidden lg:block lg:flex gap-x-8">
             @foreach($nav as $item)
             @if(count($item->children)>0)
                     <div class="relative">
@@ -69,10 +69,9 @@
     <div class="fixed inset-0 z-10"></div>
     <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div class="flex items-center justify-between">
-            <a href="#" class="-m-1.5 p-1.5">
-                <span class="sr-only">Your Company</span>
-                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
-            </a>
+            <div class="py-6">
+                @include('partials/language_switcher')
+            </div>
             <button type="button" @click="isBurgerMenuOpen=false" class="-m-2.5 rounded-md p-2.5 text-gray-700">
                 <span class="sr-only">Close menu</span>
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -83,17 +82,18 @@
         <div class="mt-6 flow-root">
             <div class="-my-6 divide-y divide-gray-500/10">
                 <div class="space-y-2 py-6">
-                    <div class="-mx-3">
+                    <div class="mx-3">
+
                         @foreach($nav as $item)
                             @if(count($item->children)>0)
-                                <button @click="openMobileMenu === {{ $item->id }} ? openMobileMenu = null : openMobileMenu = {{ $item->id }}" type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" aria-controls="disclosure-1" aria-expanded="false">
-                                    {{ $item->{'title_'.app()->getLocale()} }}
+                                <button @click="openMobileMenu === {{ $item->id }} ? openMobileMenu = null : openMobileMenu = {{ $item->id }}" type="button" class="flex w-full justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" aria-controls="disclosure-1" aria-expanded="false">
+                                   <span class="text-left">{{ $item->{'title_'.app()->getLocale()} }}</span>
                                     <svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
                                     </svg>
                                 </button>
                                 <!-- 'Product' sub-menu, show/hide based on menu state. -->
-                                <div x-show="openMobileMenu === {{ $item->id }}" class="mt-2 space-y-2" id="disclosure-1">
+                                <div  x-cloak x-show="openMobileMenu === {{ $item->id }}" class="mt-2 space-y-2 bg-gray-100" id="disclosure-1">
                                     @foreach($item->children as $child)
                                         @if($child->link)
                                             <a href="{{ $child->link }}" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">
@@ -107,18 +107,17 @@
                                     @endforeach
                                 </div>
                             @endif
+                                @if($item->link)
+                                    <a href="{{ $item->link }}" class="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ $item->{'title_'.app()->getLocale()} }}</a>
+                                @else
+                                    <a href="{{ $item->page ? route('page',$item->page) : '#' }}" class="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ $item->{'title_'.app()->getLocale()} }}</a>
+                                @endif
                         @endforeach
 
                     </div>
-                    @if($item->link)
-                        <a href="{{ $link }}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ $item->{'title_'.app()->getLocale()} }}</a>
-                    @else
-                        <a href="{{ $item->page ? route('page',$item->page) : '#' }}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ $item->{'title_'.app()->getLocale()} }}</a>
-                    @endif
+
                 </div>
-                <div class="py-6">
-                    @include('partials/language_switcher')
-                </div>
+
             </div>
         </div>
     </div>
