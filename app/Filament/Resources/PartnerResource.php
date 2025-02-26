@@ -37,7 +37,11 @@ class PartnerResource extends Resource
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('logo')
                     ->required()
-                    ->directory('logo')
+                    ->directory('logo'),
+                Forms\Components\TextInput::make('position')
+                    ->required()
+                    ->numeric()
+                    ->default(0),
             ]);
     }
 
@@ -51,6 +55,7 @@ class PartnerResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('logo')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('position'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -34,8 +34,8 @@ class AppLayout extends Component
             return \App\Models\Menu::with(['category','children','page'])->where(['active'=>true,'category_id'=>2])->where('parent_id','=',NULL)->get();
         });
 
-        $partners = Cache::remember('partners',120,function(){
-            return \App\Models\Partner::all();
+        $partners = Cache::remember('partners',now()->addDay(),function(){
+            return \App\Models\Partner::query()->orderBy('position')->get();
         });
 
         return view('components.app-layout',compact(['nav','sidebarNav','partners']));

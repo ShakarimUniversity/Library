@@ -6,6 +6,7 @@ use App\Filament\Resources\MenuResource\Pages;
 use App\Filament\Resources\MenuResource\RelationManagers;
 use App\Models\Menu;
 use App\Models\Page;
+use Filament\Actions\DeleteAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -25,9 +26,9 @@ class MenuResource extends Resource
 
     protected static ?string $navigationLabel = 'Меню';
 
-    protected static ?string $modelLabel = 'Страницы';
+    protected static ?string $modelLabel = 'Меню';
 
-    protected static ?string $pluralModelLabel = 'Страницы';
+    protected static ?string $pluralModelLabel = 'Меню';
 
     public static function form(Form $form): Form
     {
@@ -50,6 +51,7 @@ class MenuResource extends Resource
                             ->label('Ссылка')
                             ->maxLength(255),
                         Forms\Components\TextInput::make('sort')
+                            ->label('Позиция')
                             ->required()
                             ->numeric()
                             ->default(0),
@@ -63,7 +65,7 @@ class MenuResource extends Resource
                             ->default(1),
                     ]),
 
-                Forms\Components\Section::make('Страница')
+                Forms\Components\Section::make('Контент')
                     ->relationship('page',condition: fn (?array $state): bool => filled($state['title_kz']))
                     ->schema([
                         Forms\Components\Tabs::make('Tabs')
@@ -119,7 +121,7 @@ class MenuResource extends Resource
                     ->label('Заголовок(kz)')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('title_ru')
-                    ->label('Заголовок(кг)')
+                    ->label('Заголовок(ru)')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('parent.title_kz')
                     ->label('Родительское меню')
@@ -127,6 +129,7 @@ class MenuResource extends Resource
                 Tables\Columns\TextColumn::make('link')
                     ->label('Ссылка'),
                 Tables\Columns\TextColumn::make('sort')
+                    ->label('Позиция')
                     ->numeric(),
                 Tables\Columns\TextColumn::make('category_id')
                     ->label('Категория'),
@@ -138,6 +141,7 @@ class MenuResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
