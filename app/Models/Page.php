@@ -32,4 +32,9 @@ class Page extends Model
     public function menu(){
         return $this->hasOne(Menu::class,'id','menu_id');
     }
+
+    public function pageLists()
+    {
+        return $this->hasMany(PageList::class);
+    }
 }

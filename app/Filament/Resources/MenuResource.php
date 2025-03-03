@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MenuResource\Pages;
 use App\Filament\Resources\MenuResource\RelationManagers;
+use App\Filament\Resources\PageResource\RelationManagers\PageListsRelationManager;
 use App\Models\Menu;
 use App\Models\Page;
 use Filament\Actions\DeleteAction;
@@ -64,52 +65,6 @@ class MenuResource extends Resource
                             ->required()
                             ->default(1),
                     ]),
-
-                Forms\Components\Section::make('Контент')
-                    ->relationship('page',condition: fn (?array $state): bool => filled($state['title_kz']))
-                    ->schema([
-                        Forms\Components\Tabs::make('Tabs')
-                            ->tabs([
-                                Tabs\Tab::make('kz')
-                                    ->schema([
-                                        Forms\Components\TextInput::make('title_kz')
-                                            ->label('Заголовок(kz)')
-                                            ->maxLength(255)
-                                            ->reactive()
-                                            ->debounce(500)
-                                            ->afterStateUpdated(function (Forms\Set $set, $state) {
-                                                $set('slug', Str::slug($state));
-                                            }),
-                                        TiptapEditor::make('content_kz')
-                                            ->label('Контент(kz)')
-                                            ->requiredWith('title_kz')
-                                            ->directory('page')
-                                            ->columnSpanFull(),
-                                    ]),
-                                Tabs\Tab::make('ru')
-                                    ->schema([
-                                        Forms\Components\TextInput::make('title_ru')
-                                            ->label('Заголовок(ru)')
-                                            ->requiredWith('title_kz')
-                                            ->maxLength(255),
-                                        TiptapEditor::make('content_ru')
-                                            ->label('Контент(ru)')
-                                            ->requiredWith('title_kz')
-                                            ->directory('page')
-                                            ->columnSpanFull(),
-                                    ])
-                            ]),
-                        Forms\Components\TextInput::make('slug')
-                            ->requiredWith('title_kz')
-                            ->unique(ignorable: fn ($record) => $record)
-                            ->maxLength(255),
-                        Forms\Components\Select::make('parent_id')
-                            ->label('Родительская страница')
-                            ->options(Page::all()->pluck('title_kz', 'id')),
-                        Forms\Components\Toggle::make('active')
-                            ->label('Активный')
-                            ->default(1),
-                    ])
             ]);
     }
 
@@ -153,7 +108,7 @@ class MenuResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+           //
         ];
     }
 
