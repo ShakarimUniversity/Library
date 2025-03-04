@@ -23,6 +23,12 @@ class PageResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Страницы';
+
+    protected static ?string $modelLabel = 'Страница';
+
+    protected static ?string $pluralModelLabel = 'Страницы';
+
     public static function form(Form $form): Form
     {
         return $form
